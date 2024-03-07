@@ -1,5 +1,5 @@
 # Use a base image with GraalVM and Maven for native compilation
-FROM ghcr.io/graalvm/graalvm-ce:java21
+FROM ghcr.io/graalvm/graalvm-ce:latest
 
 # Set the working directory inside the container
 WORKDIR /usr/src/app
