@@ -15,7 +15,7 @@ COPY gradlew /usr/src/app/gradlew
 RUN ./gradlew --version
 
 # Copy the Quarkus application source code
-COPY src /usr/src/app/src
+COPY build/libs/*.jar /usr/src/app/src
 
 # Build the Quarkus application using Gradle
 RUN ./gradlew build -PquarkusPluginVersion=2.7.0.Final
