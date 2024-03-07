@@ -7,9 +7,9 @@ WORKDIR /usr/src/app
 COPY settings.gradle.kts /usr/src/app/settings.gradle.kts
 COPY build.gradle.kts /usr/src/app/build.gradle.kts
 
-# Copy only the necessary files needed for dependency resolution
-COPY gradle /usr/src/app/gradle
-COPY gradlew /usr/src/app/gradlew
+## Copy only the necessary files needed for dependency resolution
+#COPY gradle /usr/src/app/gradle
+#COPY gradlew /usr/src/app/gradlew
 
 # Download Gradle and dependencies
 RUN ./gradlew --version
