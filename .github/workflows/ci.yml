@@ -24,7 +24,7 @@ jobs:
 
       - name: Build Docker Image
         run: |
-          docker build -t nhatuan444/tracker:latest -f src/main/docker/Dockerfile.jvm
+          docker build -f src/main/docker/Dockerfile.jvm -t tracker:latest 
 
       - name: Log in to Docker Registry
         run: echo ${{ secrets.DOCKER_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin nhatuan444
