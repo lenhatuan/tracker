@@ -22,9 +22,12 @@ jobs:
       - name: Build
         run: ./gradlew build --console=plain
 
+      - name: Set up Docker Buildx (optional)
+        uses: docker/setup-buildx-action@v1
+
       - name: Build Docker Image
         run: |
-          docker build -f src/main/docker/Dockerfile.jvm -t tracker:latest 
+          docker buildx build -f src/main/docker/Dockerfile.jvm -t tracker:latest 
 
       - name: Log in to Docker Registry
         run: echo ${{ secrets.DOCKER_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin nhatuan444
