@@ -27,4 +27,4 @@ COPY build/libs/*-runner.jar /usr/src/app/app.jar
 EXPOSE 8080
 
 # Set the entry point to run the Quarkus application
-CMD ["java", "-jar", "app.jar"]"]
+CMD ["java", "-jar", "app.jar"]
