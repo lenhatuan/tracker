@@ -39,8 +39,8 @@ jobs:
         uses: docker/setup-buildx-action@v1
 
       - name: Copy build artifacts
-        shell: bash -O extglob -c
         run: |
+          shopt -s extglob
           mkdir -p build/quarkus-app/quarkus
           cp -r build/!(quarkus-app) build/quarkus-app/quarkus
 
