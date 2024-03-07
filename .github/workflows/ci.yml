@@ -22,17 +22,15 @@ jobs:
       - name: Build
         run: ./gradlew build --console=plain
 
-      - name: Install Native Image (if needed)
-        run: |
-            sudo apt-get install -y gcc
-            ./gradlew quarkusBuild --console=plain
+      - name: Set up Docker Buildx (optional)
+        uses: docker/setup-buildx-action@v1
 
-      - name: Build Native Image (if needed)
+      - name: Build Docker Image
         run: |
-            ./gradlew buildNative --console=plain
+          docker buildx build -t nhatuan444/tracker:latest .
 
-      - name: Deploy to Docker Hub
-        run: |
-            echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
-            docker build -t nhatuan444/tracker:latest .
-            docker push nhatuan444/tracker:latest
+      - name: Log in to Docker Registry
+        run: echo ${{ secrets.DOCKER_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin your-docker-registry
+
+      - name: Push Docker Image
+        run: docker push nhatuan444/tracker:latest
