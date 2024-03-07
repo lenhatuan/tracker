@@ -24,7 +24,7 @@ jobs:
 
       - name: Install Native Image (if needed)
         run: |
-            sudo yum install -y gcc
+            sudo apt-get install -y gcc
             ./gradlew quarkusBuild --console=plain
 
       - name: Build Native Image (if needed)
