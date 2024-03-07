@@ -46,8 +46,8 @@ jobs:
 
       - name: Copy build artifacts
         run: |
-          mkdir -p build/quarkus-app
-          cp -r build/* build/quarkus-app
+          mkdir -p build/quarkus-app/quarkus
+          cp build/quarkus-app/quarkus-run.jar build/quarkus-app/quarkus
 
       - name: Build and push Docker images
         uses: docker/build-push-action@v2
