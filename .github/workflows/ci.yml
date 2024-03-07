@@ -13,14 +13,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
       - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
           java-version: 21
           distribution: temurin
-          cache:
-            paths:
-              - .gradle/wrapper
-              - .gradle/caches
       - name: Build
-        run: ./gradlew build
+        run: ./gradlew build --console=plain
+
+      - name: Install Native Image (if needed)
+        run: |
+            sudo yum install -y gcc
+            ./gradlew quarkusBuild --console=plain
+
+      - name: Build Native Image (if needed)
+        run: |
+            ./gradlew buildNative --console=plain
+
+      - name: Deploy to Docker Hub
+        run: |
+            echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+            docker build -t nhatuan444/tracker:latest .
+            docker push nhatuan444/tracker:latest
