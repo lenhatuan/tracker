@@ -18,6 +18,9 @@ jobs:
         with:
           java-version: 21
           distribution: temurin
-          cache: maven
+          cache:
+            paths:
+              - .gradle/wrapper
+              - .gradle/caches
       - name: Build
         run: ./gradlew build
