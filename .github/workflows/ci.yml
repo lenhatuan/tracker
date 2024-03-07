@@ -30,7 +30,7 @@ jobs:
           docker buildx build -t nhatuan444/tracker:latest -f src/main/docker/Dockerfile.jvm
 
       - name: Log in to Docker Registry
-        run: echo ${{ secrets.DOCKER_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin your-docker-registry
+        run: echo ${{ secrets.DOCKER_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin nhatuan444
 
       - name: Push Docker Image
         run: docker push nhatuan444/tracker:latest
