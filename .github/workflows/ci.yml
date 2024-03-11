@@ -48,6 +48,6 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: ./src/main/docker
-          file: ./Dockerfile.native
+          file: ./src/main/docker/Dockerfile.native
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/tracker:latest
